@@ -6,5 +6,6 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-#IDE specific settings
+#IDE specific
 /.idea/
+/out/
