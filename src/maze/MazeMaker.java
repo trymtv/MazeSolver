@@ -1,3 +1,4 @@
+/*
 package maze;
 
 import java.io.File;
@@ -10,3 +11,4 @@ public class MazeMaker {
 		File outputFile = new File(targetPath);
 	}
 }
+*/

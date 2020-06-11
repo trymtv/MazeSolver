@@ -1,9 +1,9 @@
 package image;
 
-import search.Node;
+import search.PositionNode;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 
 //TODO extend from BufferedImage
 public class ImageDrawer{
@@ -50,11 +50,11 @@ public class ImageDrawer{
 		}
 	}
 	/**
-	 * Draws a line between the {@code Node}s of a specified path.
+	 * Draws a line between the {@code PositionNode}s of a specified path.
 	 *
 	 * @param path a list of nodes in line
 	 */
-	public void drawPath(ArrayList<Node> path) {
+	public void drawPath(List<PositionNode> path) {
 		for (int i = 0; i < path.size()-1; i++) {
 			this.drawLine(path.get(i).getCoordinate(), path.get(i+1).getCoordinate());
 		}
