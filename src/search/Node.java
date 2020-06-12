@@ -19,8 +19,19 @@ public class Node {
         visited = true;
     }
 
+    /**
+     * Connecting two nodes of the same type
+     * @param other - the node to connect to
+     *
+     * @throws IllegalArgumentException - the two nodes that connects are not the same type
+     */
     public void connect(Node other){
-        this.neighbors.add(other);
-        other.neighbors.add(this);
+        if(this.getClass().equals(other.getClass())){
+            this.neighbors.add(other);
+            other.neighbors.add(this);
+        }
+        else{
+            throw new IllegalArgumentException("Can't connect two different type of nodes.");
+        }
     }
 }

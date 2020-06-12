@@ -55,7 +55,6 @@ public class MazeImage {
     		test.img.setRGB(node.getX(), node.getY(), PixelColorParser.getARGB(255, 255, 0,0));
     	}
     	ImageDrawer drawer = new ImageDrawer(test.img);
-    	System.out.println(SolveMaze.solveDepthFirst(graph.getGraph().get(0), PositionNode::isTarget));
     	drawer.drawPath(SolveMaze.solveDepthFirst(graph.getGraph().get(0), PositionNode::isTarget));
     	System.out.println(SolveMaze.getPath());
     	ImageIO.write(test.img, "png", outputFile);
