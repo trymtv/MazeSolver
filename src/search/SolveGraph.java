@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SolveMaze {
+public class SolveGraph {
 
 	private static LinkedList<Node> queue = new LinkedList<>();
 	private static List<Node> path = new ArrayList<>();
@@ -21,8 +21,10 @@ public class SolveMaze {
 	 * @return {@code List<Node>} of the path from target to root, in that order
 	 */
 	public static <T extends Node> List<T> solveDepthFirst(T root, Predicate<T> targetPred) {
-		SolveMaze.depthFirst(root, targetPred);
-		return (List<T>)SolveMaze.path;
+		depthFirst(root, targetPred);
+		//handled in node connection encapsulation
+		//noinspection unchecked
+		return (List<T>) SolveGraph.path;
 	}
 	
 	private static <T extends Node> void depthFirst(T current, Predicate<T> targetPred){
@@ -33,6 +35,8 @@ public class SolveMaze {
 		}
 		for(Node next:current.getNeighbors()) {
 			if(!next.isVisited()) {
+				//handled in node connection encapsulation
+				//noinspection unchecked
 				depthFirst((T) next, targetPred);
 				if(!path.isEmpty()) {
 					path.add(current);

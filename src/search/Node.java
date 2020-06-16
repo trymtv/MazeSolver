@@ -34,4 +34,8 @@ public class Node {
             throw new IllegalArgumentException("Can't connect two different type of nodes.");
         }
     }
+    public void disconnect(Node other){
+        this.neighbors.remove(other);
+        other.neighbors.remove(this);
+    }
 }

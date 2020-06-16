@@ -5,10 +5,11 @@ import search.PositionNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MazeGraph {
-	private ArrayList<PositionNode> graph = new ArrayList<>();
+	private List<PositionNode> graph = new ArrayList<>();
 	
 	
 	public void makeNodes(ImagePixelArray array){
@@ -94,7 +95,7 @@ public class MazeGraph {
 		//Attaching the end node
 		graph.get(1).connect(verticalCandidates[graph.get(1).getX()]);
 	}
-	public ArrayList<PositionNode> getGraph() {
+	public List<PositionNode> getGraph() {
 		return graph;
 	}
 	

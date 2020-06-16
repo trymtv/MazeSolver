@@ -5,8 +5,7 @@ import java.awt.image.DataBufferByte;
 
 public class ImagePixelArray{
 	private int[][] pixelArray;
-	private final int imageHeight;
-	private final int imageWidth;
+	private final int imageHeight, imageWidth;
 	
 	public ImagePixelArray(BufferedImage img) {
 		final byte[] pixels = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
@@ -23,6 +22,11 @@ public class ImagePixelArray{
 			}
 		}
 	}
+
+	public ImagePixelArray(int size){
+		imageHeight = imageWidth = size;
+		pixelArray = new int[size][size];
+	}
 	
 	public int[][] getPixelArray() {
 		return pixelArray;
@@ -31,6 +35,8 @@ public class ImagePixelArray{
 	public int getPixel(int x, int y) {
 		return pixelArray[y][x];
 	}
+	public void setPixel(int x, int y, int argb){ pixelArray[y][x] = argb; }
+
 	public int getRed(int x, int y) {
 		return (PixelColorParser.getRed(this.getPixel(x, y)));
 	}
