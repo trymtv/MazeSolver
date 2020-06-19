@@ -19,18 +19,23 @@ public class MazeGraph {
 		 */
 		PositionNode[] verticalCandidates = new PositionNode[array.getWidth()];
 		//finding the start and end nodes
+		//setting first two nodes to start(0) and end(1)
+		graph.add(new PositionNode(0,0));
+		graph.add(new PositionNode(0,0));
 		for(int x=0; x < array.getWidth(); x++) {
 			if(array.isWhite(x, 0)) {
-				graph.add(new PositionNode(x, 0));
-				graph.get(0).setRoot();
-				verticalCandidates[x] = graph.get(graph.size()-1);
+				graph.set(0, new PositionNode(x, 0));
+				graph.get(graph.size()-1).setRoot();
+				verticalCandidates[x] = graph.get(0);
+//				if(graph.size() == 2)
+//					break;
 			}
 			if(array.isWhite(x, array.getHeight() - 1)) {
-				graph.add(new PositionNode(x, array.getHeight()-1));
-				graph.get(1).setTarget();
+				graph.set(1, new PositionNode(x, array.getHeight()-1));
+				graph.get(graph.size() - 1).setTarget();
+//				if(graph.size() == 2)
+//					break;
 			}
-			if(graph.size() == 2)
-				break;
 		}
 		boolean wasBlack = false;
 		//Iterates over the whole array of pixels, not considering the border

@@ -39,26 +39,27 @@ public class MazeImage {
 	}
     
     public static void main(String[] args) throws IOException {
-    	MazeImage test = new MazeImage("C:\\Users\\Trym\\Pictures\\maze\\maze.png");
+		final long startTime = System.currentTimeMillis();
+
+    	MazeImage test = new MazeImage("C:\\Users\\tiltr\\Pictures\\maze\\makeTest.png");
     	ImagePixelArray pixelArray = new ImagePixelArray(test.img);
-//    	System.out.println(Arrays.toString(pixelArray.getRBG(5, 16)));
-//    	System.out.println(pixelArray.isWhite(5, 16));
-//    	System.out.println(pixelArray.getPixelArray().length);
-//    	test.prettyPrint();
-//    	System.out.println(pixelArray.getPixel(5, 0));
-//    	System.out.println(pixelArray.isWhite(5, 0));
     	MazeGraph graph = new MazeGraph();
     	graph.makeNodes(pixelArray);
-//    	System.out.println(graph);
-    	File outputFile = new File("C:\\Users\\Trym\\Pictures\\maze\\test.png");
     	for(PositionNode node : graph.getGraph()) {
     		test.img.setRGB(node.getX(), node.getY(), PixelColorParser.getARGB(255, 255, 0,0));
     	}
     	ImageDrawer drawer = new ImageDrawer(test.img);
-    	drawer.drawPath(SolveGraph.solveDepthFirst(graph.getGraph().get(0), PositionNode::isTarget), Color.GRAY.getRGB());
-    	System.out.println(SolveGraph.getPath());
-//		BufferedImage img = MazeMaker.drawMaze(1000, 1000);
+    	drawer.drawPath(SolveGraph.solveDepthFirst(graph.getGraph().get(0), PositionNode::isTarget), Color.BLUE.getRGB());
 
-    	ImageIO.write(test.img, "png", outputFile);
+		File outputFile = new File("C:\\Users\\tiltr\\Pictures\\maze\\test.png");
+		ImageIO.write(test.img, "png", outputFile);
+
+//		Maze maker test
+//		File makeOutputFile = new File("C:\\Users\\tiltr\\Pictures\\maze\\makeTest.png");
+//		BufferedImage img = MazeMaker.drawMaze(300, 300);
+//		ImageIO.write(img, "png", makeOutputFile);
+
+		final long endTime = System.currentTimeMillis();
+		System.out.println("Total execution time: " + (endTime - startTime));
 	}
 }
