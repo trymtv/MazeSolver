@@ -35,7 +35,7 @@ public class MazeMaker {
 			}
 		}
 		//add initial node
-		PositionNode init = nodes[(int) (Math.random()*nodes.length)][(int) (Math.random()*nodes.length)];
+		PositionNode init = nodes[(int) (Math.random()*colNum)][(int) (Math.random()*rowNum)];
 		init.visit();
 		stack.push(init);
 
