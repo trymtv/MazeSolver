@@ -14,26 +14,21 @@ public class ImagePixelArray{
 		pixelArray = new int[imageWidth][imageHeight];
 		
 		for (int pixel=0 , column=0 , row=0; pixel + 3 < pixels.length; pixel+=4) {
-			pixelArray[row][column] = PixelColorParser.getARGB(pixels[pixel],pixels[pixel+1],pixels[pixel+2],pixels[pixel+3]);
+			pixelArray[column][row] = PixelColorParser.getARGB(pixels[pixel],pixels[pixel+1],pixels[pixel+2],pixels[pixel+3]);
 			column++;
-			if(column == imageHeight) {
+			if(column == imageWidth) {
 				column = 0;
 				row++;
 			}
 		}
 	}
-
-	public ImagePixelArray(int size){
-		imageHeight = imageWidth = size;
-		pixelArray = new int[size][size];
-	}
 	
 	public int[][] getPixelArray() {
 		return pixelArray;
 	}
-	//reversed arguments for correct formatting of array dimensions
+
 	public int getPixel(int x, int y) {
-		return pixelArray[y][x];
+		return pixelArray[x][y];
 	}
 	public void setPixel(int x, int y, int argb){ pixelArray[y][x] = argb; }
 
