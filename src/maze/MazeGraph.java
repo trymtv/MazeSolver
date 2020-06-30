@@ -32,7 +32,7 @@ public class MazeGraph {
 			}
 			if(array.isWhite(x, array.getHeight() - 1)) {
 				graph.set(1, new PositionNode(x, array.getHeight()-1));
-				graph.get(graph.size() - 1).setTarget();
+				graph.get(1).setTarget();
 //				if(graph.size() == 2)
 //					break;
 			}

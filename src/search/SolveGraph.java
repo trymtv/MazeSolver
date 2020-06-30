@@ -1,8 +1,6 @@
 package search;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class SolveGraph {
@@ -20,14 +18,14 @@ public class SolveGraph {
 	 *
 	 * @return {@code List<Node>} of the path from target to root, in that order
 	 */
-	public static <T extends Node> List<T> solveDepthFirst(T root, Predicate<T> targetPred) {
-		depthFirst(root, targetPred);
+	public static <T extends Node> List<T> solveRecDepthFirst(T root, Predicate<T> targetPred) {
+		recDepthFirst(root, targetPred);
 		//handled in node connection encapsulation
 		//noinspection unchecked
 		return (List<T>) SolveGraph.path;
 	}
 	
-	private static <T extends Node> void depthFirst(T current, Predicate<T> targetPred){
+	private static <T extends Node> void recDepthFirst(T current, Predicate<T> targetPred){
 		current.visit();
 		if(targetPred.test(current)) {
 			path.add(current);
@@ -37,13 +35,35 @@ public class SolveGraph {
 			if(!next.isVisited()) {
 				//handled in node connection encapsulation
 				//noinspection unchecked
-				depthFirst((T) next, targetPred);
+				recDepthFirst((T) next, targetPred);
 				if(!path.isEmpty()) {
 					path.add(current);
 					return;
 				}
 			}
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Node> List<T> stackDepthFirst(T start, Predicate<T> targetPred){
+		Stack<T> stack = new Stack<>();
+		start.visit();
+		stack.push(start);
+		while(!stack.isEmpty()){
+			T current = stack.pop();
+			if (targetPred.test(current)) {
+				stack.push(current);
+				break;
+			}
+			if(!current.getNeighbors().isEmpty()){
+				stack.push(current);
+				T next = (T) current.getNeighbors().remove(0);
+				next.visit();
+				current.disconnect(next);
+				stack.push(next);
+			}
+		}
+		return new ArrayList<>(stack);
 	}
 
 
