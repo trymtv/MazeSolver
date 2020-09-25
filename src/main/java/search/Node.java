@@ -38,4 +38,5 @@ public class Node {
         this.neighbors.remove(other);
         other.neighbors.remove(this);
     }
+
 }

@@ -20,22 +20,22 @@ public class MazeGraph {
 		PositionNode[] verticalCandidates = new PositionNode[array.getWidth()];
 		//finding the start and end nodes
 		//setting first two nodes to start(0) and end(1)
-		PositionNode start, end;
+		PositionNode start = null, end = null;
 		for(int x=0; x < array.getWidth(); x++) {
 			if(array.isWhite(x, 0)) {
 				start = new PositionNode(x, 0);
-				graph.get(graph.size()-1).setRoot();
-				verticalCandidates[x] = graph.get(0);
-//				if(graph.size() == 2)
-//					break;
+				start.setRoot();
+				verticalCandidates[x] = start;
 			}
 			if(array.isWhite(x, array.getHeight() - 1)) {
-				graph.set(1, new PositionNode(x, array.getHeight()-1));
-				graph.get(1).setTarget();
+				end = new PositionNode(x, array.getHeight()-1);
+				end.setTarget();
 //				if(graph.size() == 2)
 //					break;
 			}
 		}
+		graph.add(start);
+		graph.add(end);
 		boolean wasBlack = false;
 		//Iterates over the whole array of pixels, not considering the border
 		for(int y=1; y < array.getHeight()-1; y++) {
@@ -59,7 +59,6 @@ public class MazeGraph {
 						if(array.isWhite(x, y-1)||array.isWhite(x, y+1)) {
 							graph.add(new PositionNode(x,y));
 						}
-						graph.add(new PositionNode(x,y));
 						if(array.isWhite(x, y-1)) {
 							this.connect(graph.get(graph.size()-1), verticalCandidates[x]);
 							horizontalCandidate = graph.get(graph.size()-1);
@@ -97,7 +96,7 @@ public class MazeGraph {
 			}
 		}
 		//Attaching the end node
-		graph.get(1).connect(verticalCandidates[graph.get(1).getX()]);
+		end.connect(verticalCandidates[end.getX()]);
 	}
 	public List<PositionNode> getGraph() {
 		return graph;

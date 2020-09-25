@@ -22,13 +22,5 @@ public class ImageTest {
     public BufferedImage getImg() {
 		return img;
 	}
-    
-    public static void main(String[] args) {
-		ImageTest test = new ImageTest();
-		test.setImg("C:\\Users\\tiltr\\Pictures\\maze\\mazeTest.png");
-		byte[] pixels = ((DataBufferByte) test.getImg().getRaster().getDataBuffer()).getData();
-		for (int i = 0; i < pixels.length; i += 3) {
-			System.out.println("i: " + i/3 + " " + pixels[i]);
-		}
-	}
+
 }
