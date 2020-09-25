@@ -44,19 +44,20 @@ public class MazeImage {
     	MazeImage test = new MazeImage("C:\\Users\\tiltr\\Pictures\\maze\\makeTest.png");
     	ImagePixelArray pixelArray = new ImagePixelArray(test.img);
     	MazeGraph graph = new MazeGraph();
-    	graph.makeNodes(pixelArray);
-    	for(PositionNode node : graph.getGraph()) {
+		graph.makeNodes(pixelArray);
+		for(PositionNode node : graph.getGraph()) {
     		test.img.setRGB(node.getX(), node.getY(), PixelColorParser.getARGB(255, 255, 0,0));
     	}
     	ImageDrawer drawer = new ImageDrawer(test.img);
-    	drawer.drawPath(SolveGraph.solveDepthFirst(graph.getGraph().get(0), PositionNode::isTarget), Color.BLUE.getRGB());
+//    	drawer.drawPath(SolveGraph.solveRecDepthFirst(graph.getGraph().get(0), PositionNode::isTarget), Color.BLUE.getRGB());
+		drawer.drawPath(SolveGraph.stackDepthFirst(graph.getGraph().get(0), PositionNode::isTarget), Color.GREEN.getRGB());
 
 		File outputFile = new File("C:\\Users\\tiltr\\Pictures\\maze\\test.png");
 		ImageIO.write(test.img, "png", outputFile);
 
 //		Maze maker test
 //		File makeOutputFile = new File("C:\\Users\\tiltr\\Pictures\\maze\\makeTest.png");
-//		BufferedImage img = MazeMaker.drawMaze(300, 300);
+//		BufferedImage img = MazeMaker.drawMaze(960, 580);
 //		ImageIO.write(img, "png", makeOutputFile);
 
 		final long endTime = System.currentTimeMillis();

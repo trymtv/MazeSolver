@@ -20,11 +20,10 @@ public class MazeGraph {
 		PositionNode[] verticalCandidates = new PositionNode[array.getWidth()];
 		//finding the start and end nodes
 		//setting first two nodes to start(0) and end(1)
-		graph.add(new PositionNode(0,0));
-		graph.add(new PositionNode(0,0));
+		PositionNode start, end;
 		for(int x=0; x < array.getWidth(); x++) {
 			if(array.isWhite(x, 0)) {
-				graph.set(0, new PositionNode(x, 0));
+				start = new PositionNode(x, 0);
 				graph.get(graph.size()-1).setRoot();
 				verticalCandidates[x] = graph.get(0);
 //				if(graph.size() == 2)
